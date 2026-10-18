@@ -9,6 +9,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilla;
+using Utilla.Attributes;
 
 namespace MonoSandbox
 {
@@ -113,7 +114,7 @@ namespace MonoSandbox
         {
             gameObject.AddComponent<InputHandling>();
 
-            _layerMask = Player.Instance.locomotionEnabledLayers;
+            _layerMask = GTPlayer.Instance.locomotionEnabledLayers;
             _layerMask |= 1 << 8;
 
             _itemsContainer = Instantiate(new GameObject());
@@ -269,7 +270,7 @@ namespace MonoSandbox
 
         public void Update()
         {
-            if (Player.Instance != null) RefCache.HitExists = Physics.Raycast(Player.Instance.rightControllerTransform.position, Player.Instance.rightControllerTransform.forward, out RefCache.Hit, 2000, _layerMask);
+            if (GTPlayer.Instance != null) RefCache.HitExists = Physics.Raycast(GTPlayer.Instance.RightHand.controllerTransform.position, GTPlayer.Instance.RightHand.controllerTransform.forward, out RefCache.Hit, 2000, _layerMask);
 
             #region List
 
